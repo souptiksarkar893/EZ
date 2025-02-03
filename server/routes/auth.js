@@ -12,7 +12,7 @@ const validateRegistration = [
 ];
 
 // Define routes
-router.post('/register', validateRegistration, authController.register);  // Note: it's POST not GET
+router.post('/register', validateRegistration, authController.register);
 router.post('/login', authController.login);
 router.get('/verify/:token', authController.verifyEmail);
 router.get('/me', auth, authController.getCurrentUser);
