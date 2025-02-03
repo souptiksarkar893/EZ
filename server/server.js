@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const connectDB = require('./config/db'); 
 
 const authRoutes = require('./routes/auth');
 const fileRoutes = require('./routes/file');
@@ -18,12 +19,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => {
-        console.error('MongoDB connection error:', err);
-        process.exit(1);
-    });
+connectDB();
+// mongoose.connect(process.env.MONGODB_URI)
+//     .then(() => console.log('MongoDB Connected'))
+//     .catch(err => {
+//         console.error('MongoDB connection error:', err);
+//         process.exit(1);
+//     });
 
 // Routes
 app.use('/api/auth', authRoutes);
